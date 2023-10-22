@@ -1,29 +1,31 @@
 ﻿// WhatToWatch
 using WhatToWatch;
-
-Console.WriteLine("What do you feel like watching?");
-string[] Genres = Enum.GetNames(typeof(Genre));
-
-foreach (var genreName in Genres)
+foreach (var item in Movie.Catalogue())
 {
-    Genre genre = (Genre)Enum.Parse(typeof(Genre), genreName);
-    Console.WriteLine($"{(int)genre}. {genreName}");
+    Console.WriteLine(item);
 }
-
-switch (Console.ReadLine())
+Console.ReadKey();
+while (true)
 {
-    case "1":
-        
-        break;
-    case "2":
-        break;
-    case "3":
-        break;
-    case "4":
-        break;
-    default:
-        Console.WriteLine("Invalid input");
-        break;
+    Console.WriteLine("1. What do you feel like watching?");
+    Console.WriteLine("2. Add Movie/Series");
+    Console.Write("Enter a number: ");
+    // Main Menu
+    switch (Console.ReadLine())
+    {
+        case "1":
+            Console.Clear();
+            Movie.DisplayGenres();
+            break;
+        case "2":
+            Console.Clear();
+            Movie.Create();
+            break;
+        default:
+            Console.Clear();
+            Console.WriteLine("Invalid Input");
+            break;
+    }
 }
 
 void Generate(Genre genre)
